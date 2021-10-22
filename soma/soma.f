@@ -6,6 +6,7 @@
       INTEGER :: i, partial_Sum, total_Sum, thread_id
 
       total_Sum = 0;
+c     OBS: coloquei aqui fora do !$OMP PARALLEL e continuou funcionando
 
       !$OMP PARALLEL PRIVATE(partial_Sum) SHARED(total_Sum)
           partial_Sum = 0;
@@ -22,6 +23,7 @@
           !$OMP CRITICAL
               total_Sum = total_Sum + partial_Sum
           !$OMP END CRITICAL
+c         OBS: o programa funcionou mesmo sem esse !$OMP CRITICAL
 
       !$OMP END PARALLEL
 

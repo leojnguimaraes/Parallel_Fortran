@@ -1,6 +1,8 @@
       program Matrix_Multiply
       use omp_lib
 
+c     Fonte: https://youtu.be/2YhG_zl_lHU
+
       implicit none
 
       integer :: i,j,k,n

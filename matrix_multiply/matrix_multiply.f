@@ -27,7 +27,7 @@ c     Fonte: https://youtu.be/2YhG_zl_lHU
 
       wtime=omp_get_wtime()
 
-      !$omp parallel shared(a,b,c,n,s) private(angle,i,j,k)
+      !$omp parallel shared(a,b,c,n,s,pi) private(angle,i,j,k)
 
       !$omp do
       do i=1,n

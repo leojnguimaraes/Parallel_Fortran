@@ -7,7 +7,7 @@
 
       INTEGER :: i, j
 
-      total_Sum = 0;
+      total_Sum = 0.0d0;
 
       wtime=omp_get_wtime()
 

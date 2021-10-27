@@ -37,7 +37,7 @@ c     https://stackoverflow.com/questions/15304760/how-are-firstprivate-and-last
                 DO j=1,ntotal
                   x(1)=ran2(idum, iv, iy, idum2)
                   x(2)=ran2(idum, iv, iy, idum2)
-                  if (x(1)*x(1)+x(2)*x(2).le.1.0) 
+                  if (x(1)*x(1)+x(2)*x(2).le.1.0d0) 
      .            total_inside_circle=total_inside_circle+1.0d0
                 END DO
               END DO

@@ -1,4 +1,5 @@
-	export OMP_NUM_THREADS=4
+	export OMP_NUM_THREADS=8
+  export MKL_NUM_THREADS=8
 
   timei=$(date +%s)
 	./matrix_multiply
@@ -7,4 +8,4 @@
   runtime=$((timef-timei))
 
   echo " "
-  echo " Tempo de execução: $runtime"
+  echo " Tempo total de execução: $runtime"

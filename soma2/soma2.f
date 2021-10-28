@@ -5,13 +5,15 @@
 
       REAL*8 wtime, total_Sum 
 
-      INTEGER :: i, j
+      INTEGER :: i, j, nthreads
 
-      total_Sum = 0.0d0;
+      total_Sum = 0.0d0
 
       wtime=omp_get_wtime()
 
       !$OMP PARALLEL 
+
+      nthreads = omp_get_num_threads()
 
       !$OMP DO REDUCTION(+:total_Sum) SCHEDULE(DYNAMIC)
               DO i=1,100000
@@ -25,7 +27,8 @@
 
       wtime=omp_get_wtime()-wtime
 
-      WRITE(*,*) 'Elapsed time:',wtime
-      PRINT *, 'Total Sum: ', total_Sum
+      PRINT *, 'Elapsed time:', wtime
+      PRINT *, 'Total Sum:', total_Sum
+      PRINT *, 'Number of threads', nthreads 
 
       END

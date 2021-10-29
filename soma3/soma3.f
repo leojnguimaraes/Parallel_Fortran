@@ -5,7 +5,7 @@
 
       REAL*8 wtime, total_Sum, partial_Sum
 
-      INTEGER :: i, j, nthreads, thread_id
+      INTEGER :: nthreads, thread_id, i
 
       total_Sum = 0.0d0;
 
@@ -15,15 +15,15 @@
 
       partial_Sum = 0.0d0
 
-      nthreads = omp_get_num_threads()
-
-      DO i=1,100000,nthreads
-        DO j=1,100000
+      !$OMP DO 
+      DO i=1,1000000
           partial_Sum = partial_Sum + 1.0d0
-        END DO
       END DO
+      !$OMP END DO 
 
+      nthreads = omp_get_num_threads()
       thread_id = omp_get_thread_num()
+
       PRINT *, 'Sum of process ', thread_id, ' = ', partial_Sum
 
       !$OMP CRITICAL

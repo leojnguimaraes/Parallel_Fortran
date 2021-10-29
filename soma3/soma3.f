@@ -5,7 +5,7 @@
 
       REAL*8 wtime, total_Sum, partial_Sum, Sum
 
-      INTEGER :: nthreads, thread_id, block_size
+      INTEGER nthreads, thread_id, block_size
 
       Sum = 100000000.0d0   ! incrementar até chegar nesse número
 

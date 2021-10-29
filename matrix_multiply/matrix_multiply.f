@@ -14,11 +14,6 @@ c     Fonte: https://youtu.be/2YhG_zl_lHU
       n=650
       n=3000
       
-      write(*,*)
-      write(*,*) 'Matrix order:', n
-      write(*,*) 'Number of processors availabe:', omp_get_num_procs()
-      write(*,*) 'Number of threads availabe:', omp_get_max_threads()
-
       allocate(a(1:n,1:n))
       allocate(b(1:n,1:n))
       allocate(c_omp(1:n,1:n))
@@ -28,9 +23,18 @@ c     Fonte: https://youtu.be/2YhG_zl_lHU
 
       !$omp parallel private(angle,i,j,k)
 
+          !$OMP SINGLE
+          write(*,*)
+          write(*,*) 'Matrix order:', n
+          write(*,*) 'Number of processors availabe:', 
+     .                omp_get_num_procs()
+          write(*,*) 'Number of threads availabe:', 
+     .                omp_get_max_threads()
+          !$OMP END SINGLE
+
           !$omp do
-          do i=1,n
-            do j=1,n
+          do i=1,n              
+            do j=1,n                
               angle=2.0d0*pi*dfloat(i-1)*dfloat(j-1)/dfloat(n)
               a(i,j)=s*(dsin(angle)+dcos(angle))
             end do
@@ -53,7 +57,7 @@ c     Fonte: https://youtu.be/2YhG_zl_lHU
 
       !$omp parallel private(aux,i,j,k)
 
-        !$omp do 
+        !$omp do schedule(static) ! este 'static' não vi fazer muita difereça, inclusive acho que é o default, mas vi que é usado em alguns códigos
         do j=1,n        ! Atenção: a ordem dos índices j,i,k
           do i=1,n      !          tem grande influência no
             do k=1,n    !          tempo de execução desse loop

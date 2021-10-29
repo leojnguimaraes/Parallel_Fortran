@@ -21,7 +21,7 @@
 
       !$OMP DO REDUCTION(+:total_Sum) PRIVATE(x)
               DO i=1,nstep
-                x = (dfloat(i)+0.5d0)*step
+                x = (dfloat(i-1)+0.5d0)*step
                 total_Sum = total_Sum + 4.0d0/(1.0d0+x*x)
               END DO
       !$OMP END DO
@@ -37,6 +37,7 @@
       PRINT *, 'Elapsed time:', wtime
       PRINT *, 'Number of threads', nthreads 
       PRINT *, 'Integral PI approx:', pi_approx
+      PRINT *, 'Exact value of PI: ', pi
       PRINT *, 'Error (%)', 100.0d0*dabs(pi_approx-pi)/pi
 
       END PROGRAM

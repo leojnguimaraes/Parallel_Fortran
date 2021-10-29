@@ -1,3 +1,3 @@
-	export OMP_NUM_THREADS=7
+	export OMP_NUM_THREADS=8
 	./soma3
 

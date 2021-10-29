@@ -16,7 +16,7 @@ c     Fonte: https://youtu.be/2YhG_zl_lHU
       
       write(*,*)
       write(*,*) 'Matrix order:', n
-      write(*,*) 'OpenMP processors availabe:', omp_get_num_procs()
+      write(*,*) 'Number of processors availabe:', omp_get_num_procs()
       write(*,*) 'Number of threads availabe:', omp_get_max_threads()
 
       allocate(a(1:n,1:n))
@@ -54,13 +54,11 @@ c     Fonte: https://youtu.be/2YhG_zl_lHU
       !$omp parallel private(aux,i,j,k)
 
         !$omp do 
-        do i=1,n
-          do j=1,n
-            aux=0.0d0
-            do k=1,n
-              aux=aux+a(i,k)*b(k,j)
+        do j=1,n        ! Atenção: a ordem dos índices j,i,k
+          do i=1,n      !          tem grande influência no
+            do k=1,n    !          tempo de execução desse loop
+              c_omp(i,j)=c_omp(i,j)+a(i,k)*b(k,j)
             end do
-            c_omp(i,j)=aux ! esta linha consome todo tempo de CPU
           end do
         end do
         !$omp end do

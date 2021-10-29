@@ -23,7 +23,7 @@
         END DO
       END DO
 
-      thread_id = OMP_GET_THREAD_NUM()
+      thread_id = omp_get_thread_num()
       PRINT *, 'Sum of process ', thread_id, ' = ', partial_Sum
 
       !$OMP CRITICAL

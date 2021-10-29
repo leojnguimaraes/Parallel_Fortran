@@ -24,7 +24,7 @@
       IF (thread_id.eq.0) block_size = int(Sum)-block_size*(nthreads-1)
 
       DO WHILE (1.EQ.1)
-      IF (int(partial_Sum).ge.block_size) EXIT
+        IF (int(partial_Sum).ge.block_size) EXIT
         partial_Sum = partial_Sum + 1.0d0
       END DO
 

@@ -8,12 +8,13 @@
       implicit none
 
       integer, parameter :: dp       = kind(0.0d0)
-      integer, parameter :: n        = 2000
       integer, parameter :: nthreads = 8
       
-      integer       :: i, j, k
+      integer       :: i, j, k, n
       real*8 :: t1, t2
       real*8,dimension(:,:),allocatable :: a, b, c
+
+      n = 2000
 
       allocate(a(1:n,1:n))
       allocate(b(1:n,1:n))
@@ -50,7 +51,9 @@
       t1 = omp_get_wtime()
       
       ! Calculate C = AB in parallel with OpenMP, using static scheduling.
-      !$omp parallel shared(a, b, c) private(i, j, k)
+      !$omp parallel default(none)
+     .               private(i,j,k)
+     .               shared(a,b,c,n) 
 
       !$omp single
       write(*,*)

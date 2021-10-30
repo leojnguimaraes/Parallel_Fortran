@@ -28,7 +28,10 @@ c     https://stackoverflow.com/questions/15304760/how-are-firstprivate-and-last
 
       wtime=omp_get_wtime()
 
-      !$OMP PARALLEL PRIVATE(x,idum) FIRSTPRIVATE(idum2,iv,iy) 
+      !$OMP PARALLEL DEFAULT(NONE)
+     .               PRIVATE(x,idum,i,j) 
+     .               FIRSTPRIVATE(idum2,iv,iy) 
+     .               SHARED(ntotal,total_inside_circle)
 
       idum = - omp_get_thread_num()
 

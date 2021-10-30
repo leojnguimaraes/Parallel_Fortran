@@ -5,7 +5,7 @@
 
       INTEGER :: i, thread_id
 
-      !$OMP PARALLEL PRIVATE(thread_id)
+      !$OMP PARALLEL DEFAULT(NONE) PRIVATE(i,thread_id)
 
       thread_id = OMP_GET_THREAD_NUM()
 

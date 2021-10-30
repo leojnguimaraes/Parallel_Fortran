@@ -13,7 +13,9 @@
 
       wtime=omp_get_wtime()
 
-      !$OMP PARALLEL PRIVATE(partial_Sum, thread_id, block_size)
+      !$OMP PARALLEL DEFAULT(NONE)
+     .               PRIVATE(partial_Sum, thread_id, block_size)
+     .               SHARED(nthreads,total_Sum,Sum)
 
       partial_Sum = 0.0d0
 

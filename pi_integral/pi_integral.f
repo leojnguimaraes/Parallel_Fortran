@@ -15,11 +15,15 @@
 
       wtime=omp_get_wtime()
 
-      !$OMP PARALLEL 
+      !$OMP PARALLEL DEFAULT(NONE)
+     .               PRIVATE(i,x)
+     .               SHARED(nthreads,nstep,step,total_Sum)
 
+      !$OMP SINGLE
       nthreads = omp_get_num_threads()
+      !$OMP END SINGLE
 
-      !$OMP DO REDUCTION(+:total_Sum) PRIVATE(x)
+      !$OMP DO REDUCTION(+:total_Sum) 
               DO i=1,nstep
                 x = (dfloat(i-1)+0.5d0)*step
                 total_Sum = total_Sum + 4.0d0/(1.0d0+x*x)

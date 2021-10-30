@@ -5,15 +5,19 @@
 
       REAL*8 wtime, total_Sum 
 
-      INTEGER :: i, j, nthreads
+      INTEGER i, j, nthreads
 
       total_Sum = 0.0d0
 
       wtime=omp_get_wtime()
 
-      !$OMP PARALLEL 
+      !$OMP PARALLEL DEFAULT(NONE)
+     .               PRIVATE(i,j)
+     .               SHARED(nthreads,total_Sum)
 
+      !$OMP SINGLE
       nthreads = omp_get_num_threads()
+      !$OMP END SINGLE
 
       !$OMP DO REDUCTION(+:total_Sum) SCHEDULE(DYNAMIC)
               DO i=1,100000

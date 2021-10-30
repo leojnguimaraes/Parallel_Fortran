@@ -7,7 +7,10 @@
 
       total_Sum = 0
 
-      !$OMP PARALLEL PRIVATE(partial_Sum) SHARED(total_Sum)
+      !$OMP PARALLEL DEFAULT(NONE)
+     .               PRIVATE(i,thread_id,partial_Sum) 
+     .               SHARED(total_Sum)
+
           partial_Sum = 0
 
           !$OMP DO

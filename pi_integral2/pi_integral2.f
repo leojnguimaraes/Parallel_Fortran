@@ -15,7 +15,9 @@
 
       wtime=omp_get_wtime()
 
-      !$OMP PARALLEL PRIVATE(i, block_size, x, thread_id, partial_Sum)
+      !$OMP PARALLEL DEFAULT(NONE)
+     .               PRIVATE(i, block_size, x, thread_id, partial_Sum)
+     .               SHARED(nthreads, total_Sum, step, nstep)
 
       !$OMP SINGLE
       nthreads = omp_get_num_threads() ! igual para todas threads

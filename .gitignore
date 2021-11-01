@@ -7,5 +7,6 @@ matrix_multiply/matrix_multiply
 matrix_multiply_2/matrix_multiply_2
 matrix_multiply_3/matrix_multiply_3
 pi_mc/pi_mc
+pi_mc_coarray/pi_mc_coarray
 pi_integral/pi_integral
 pi_integral2/pi_integral2

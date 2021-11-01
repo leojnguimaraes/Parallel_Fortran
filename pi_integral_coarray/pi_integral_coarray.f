@@ -10,7 +10,7 @@
 
       total_Sum = 0.0d0
 
-      step = 1.0d0/dfloat(nstep)
+      step = 1.0d0/DFLOAT(nstep)
 
       im = this_image()
       IF (im == 1) THEN
@@ -19,7 +19,7 @@
       END IF
 
       DO i=im,nstep,num_images()
-        x = (dfloat(i-1)+0.5d0)*step
+        x = (DFLOAT(i-1)+0.5d0)*step
         total_Sum = total_Sum + 4.0d0/(1.0d0+x*x)
       END DO
 
@@ -31,13 +31,13 @@
           total_Sum=total_Sum+total_Sum[i]
         END DO
         pi_approx = step * total_Sum
-        call system_clock(toc)
-        call system_clock(count_rate=rate)
-        telaps = dfloat(toc - tic)  / rate
+        CALL SYSTEM_CLOCK(toc)
+        CALL SYSTEM_CLOCK(count_rate=rate)
+        telaps = DFLOAT(toc - tic)  / rate
         PRINT *, 'Elapsed time:', telaps
         PRINT *, 'Integral PI approx:', pi_approx
         PRINT *, 'Exact value of PI: ', pi
-        PRINT *, 'Error (%)', 100.0d0*dabs(pi_approx-pi)/pi
+        PRINT *, 'Error (%)', 100.0d0*DABS(pi_approx-pi)/pi
       END IF
 
       END PROGRAM

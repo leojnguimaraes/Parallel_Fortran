@@ -29,6 +29,7 @@
 
       ! Run the trials. Get a random X and Y and see if the position
       ! is within a circle of radius 1. If it is, add one to the subtotal
+      total=0
       do i=1,num_trials/int(NUM_IMAGES())
           call RANDOM_NUMBER(x)
           call RANDOM_NUMBER(y)

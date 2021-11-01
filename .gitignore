@@ -1,6 +1,7 @@
 soma/soma
 soma2/soma2
 soma3/soma3
+soma_coarray/soma_coarray
 hello_world/hello_world
 hello_world_coarray/hello_world_coarray
 matrix_multiply/matrix_multiply

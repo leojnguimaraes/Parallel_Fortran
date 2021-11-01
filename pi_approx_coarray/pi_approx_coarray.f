@@ -11,7 +11,7 @@
       real*8 :: psum[*]  ! this is a scalar coarray
       integer :: rate,tic,toc
       real*8 :: f,x,telaps, dx
-      integer :: i, stat, im, Ni, ierr
+      integer :: i, stat, Ni, ierr
       
       psum = 0.0d0
       
@@ -19,10 +19,8 @@
 
       dx=(x1-x0)/dfloat(Ni)
 
-      im = this_image()
-      
       !---------------------------------
-      if (im == 1) then
+      if (this_image() == 1) then
         call system_clock(tic)
         print 
      .  '(A,I3)', 'number of Fortran coarray images:', num_images()
@@ -30,7 +28,7 @@
       end if
       !---------------------------------
       
-      do i = im, Ni-1, num_images() ! Each image works on a subset of the problem
+      do i = this_image(), Ni-1, num_images() ! Each image works on a subset of the problem
         x = x0 + dfloat(i)*dx
         f = dx / dsqrt(1.0d0 - x*x)
         psum = psum + f
@@ -38,7 +36,7 @@
       
       sync all 
       
-      if (im == 1)  then
+      if (this_image() == 1)  then
         do i=2,num_images()
             psum = psum + psum[i]
         end do
@@ -46,7 +44,7 @@
         print '(A,E10.3)', 'pi error', pi - psum
       endif
       
-      if (im == 1) then
+      if (this_image() == 1) then
         call system_clock(toc)
         call system_clock(count_rate=rate)
         telaps = real((toc - tic))  / rate

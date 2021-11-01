@@ -4,7 +4,7 @@
 
       REAL*8 total_Sum[*], x, step, pi, pi_approx, telaps 
 
-      INTEGER :: i, nstep,rate,tic,toc,im
+      INTEGER :: i, nstep,rate,tic,toc
 
       nstep = 1000000000
 
@@ -12,20 +12,19 @@
 
       step = 1.0d0/DFLOAT(nstep)
 
-      im = this_image()
-      IF (im == 1) THEN
+      IF (this_image() == 1) THEN
         CALL SYSTEM_CLOCK(tic)
         PRINT *, 'Number of Fortran coarray images:', num_images() 
       END IF
 
-      DO i=im,nstep,num_images()
+      DO i=this_image(),nstep,num_images()
         x = (DFLOAT(i-1)+0.5d0)*step
         total_Sum = total_Sum + 4.0d0/(1.0d0+x*x)
       END DO
 
       SYNC ALL
 
-      IF (im == 1) THEN
+      IF (this_image() == 1) THEN
         pi = 4.0d0*datan(1.0d0)
         DO i=2,num_images()
           total_Sum=total_Sum+total_Sum[i]

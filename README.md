@@ -1,6 +1,7 @@
 Coleção de programas em linguagem Fortran paralelizados via OpenMP, OpenACC e Coarray.
 
 Material interessante para consulta:
+https://www.manning.com/books/modern-fortran?utm_source=modernfortran&utm_medium=affiliate&utm_campaign=affiliate&a_aid=modernfortran
 https://curc.readthedocs.io/en/latest/programming/OpenMP-Fortran.html
 https://youtu.be/9w_2tj2uD4M
 https://github.com/tgmattso/OpenMP_intro_tutorial

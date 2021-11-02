@@ -1,4 +1,4 @@
-Coleção de programas em linguagem Fortran paralelizados via OpenMP e Coarray.
+Coleção de programas em linguagem Fortran paralelizados via OpenMP, OpenACC e Coarray.
 
 Material interessante para consulta:
 https://curc.readthedocs.io/en/latest/programming/OpenMP-Fortran.html

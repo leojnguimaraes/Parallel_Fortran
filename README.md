@@ -2,6 +2,7 @@ Coleção de programas em linguagem Fortran paralelizados via OpenMP, OpenACC e 
 
 Material interessante para consulta:
 
+https://www.nag.com/nagware/np/r62_doc/nag_f2008.html
 https://www.manning.com/books/modern-fortran?utm_source=modernfortran&utm_medium=affiliate&utm_campaign=affiliate&a_aid=modernfortran
 https://curc.readthedocs.io/en/latest/programming/OpenMP-Fortran.html
 https://youtu.be/9w_2tj2uD4M

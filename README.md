@@ -20,3 +20,5 @@ Material interessante para consulta:
 - https://youtu.be/LTMwkO7gZwQ
 - https://youtu.be/PxmvTsrCTZg
 - https://youtu.be/4Gp5YJfinOA
+- https://youtu.be/5XBbGPmV47E
+- https://youtu.be/8qQ2133Sgsc

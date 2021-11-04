@@ -10,7 +10,6 @@ Material interessante para consulta:
 - https://www.nag.com/nagware/np/r62_doc/nag_f2008.html
 - https://www.manning.com/books/modern-fortran?utm_source=modernfortran&utm_medium=affiliate&utm_campaign=affiliate&a_aid=modernfortran
 - https://curc.readthedocs.io/en/latest/programming/OpenMP-Fortran.html
-- https://youtu.be/9w_2tj2uD4M
 - https://github.com/tgmattso/OpenMP_intro_tutorial
 - https://youtu.be/nE-xN4Bf8XI
 - https://youtube.com/playlist?list=PLLX-Q6B8xqZ8n8bwjGdzBJ25X2utwnoEG
@@ -27,3 +26,9 @@ Material interessante para consulta:
 - https://youtu.be/4Gp5YJfinOA
 - https://youtu.be/5XBbGPmV47E
 - https://youtu.be/8qQ2133Sgsc
+- https://youtu.be/ypRBx31e8GA
+- https://youtu.be/N6ICJv3IypI
+- https://youtu.be/2kTtfsrSHDI
+- https://youtu.be/XI1rRMQnC3g
+- https://youtu.be/9w_2tj2uD4M
+- https://youtu.be/RaMy2vfWGvA

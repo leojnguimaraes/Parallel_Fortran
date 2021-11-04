@@ -20,8 +20,8 @@ c     Fonte: https://youtu.be/2YhG_zl_lHU
 
       s=1.0d0/dsqrt(dfloat(n))
 
-      !$omp parallel default(none)
-     .               private(angle,i,j)
+      !$omp parallel default(none) 
+     .               private(angle,i,j) 
      .               shared(pi,n,s,a,b,c_mkl,c_omp)
 
           !$OMP SINGLE
@@ -56,8 +56,8 @@ c     Fonte: https://youtu.be/2YhG_zl_lHU
 
       wtime=omp_get_wtime()
 
-      !$omp parallel default(none)
-     .               private(i,j,k)
+      !$omp parallel default(none) 
+     .               private(i,j,k) 
      .               shared(n,a,b,c_mkl,c_omp)
 
         !$omp do schedule(static) ! este 'static' não vi fazer muita difereça, inclusive acho que é o default, mas vi que é usado em alguns códigos

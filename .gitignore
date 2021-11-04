@@ -1,5 +1,6 @@
 *.out
 *.mod
+Cuda/hello_world
 soma/soma
 soma2/soma2
 soma3/soma3

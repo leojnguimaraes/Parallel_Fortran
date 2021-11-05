@@ -1,5 +1,7 @@
       PROGRAM hello_world_mpi
-      include 'mpif.h'
+
+      use mpi
+c     include 'mpif.h'
       
       integer process_Rank, size_Of_Cluster, ierror, tag
       

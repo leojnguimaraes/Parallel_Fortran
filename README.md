@@ -35,4 +35,7 @@ Material interessante para consulta:
 - https://youtu.be/pRtTIW9-Nr0
 - https://youtu.be/0e5TiwZd_wE
 - https://fnjn.io/2019/03/04/Install-OpenMPI-on-Ubuntu/
+- https://curc.readthedocs.io/en/latest/programming/MPI-Fortran.html
+- https://www.mir.wustl.edu/research/research-support-facilities/center-for-high-performance-computing-chpc/for-researchers/mpi-fortran
+- https://github.com/da-james/djs-office-hours/tree/master/fortran-learning-src
 - https://youtu.be/thfGQvFhB44

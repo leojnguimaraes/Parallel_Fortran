@@ -34,4 +34,5 @@ Material interessante para consulta:
 - https://youtu.be/RaMy2vfWGvA
 - https://youtu.be/pRtTIW9-Nr0
 - https://youtu.be/0e5TiwZd_wE
+- https://fnjn.io/2019/03/04/Install-OpenMPI-on-Ubuntu/
 - https://youtu.be/thfGQvFhB44

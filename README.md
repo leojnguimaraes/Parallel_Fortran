@@ -1,4 +1,4 @@
-Coleção de programas em linguagem Fortran paralelizados via OpenMP, OpenACC e Coarray.
+Coleção de programas em linguagem Fortran paralelizados via OpenMP, OpenACC, MPI e Coarray.
 
 Material interessante para consulta:
 - https://www.openacc.org/get-started
@@ -34,3 +34,4 @@ Material interessante para consulta:
 - https://youtu.be/RaMy2vfWGvA
 - https://youtu.be/pRtTIW9-Nr0
 - https://youtu.be/0e5TiwZd_wE
+- https://youtu.be/thfGQvFhB44

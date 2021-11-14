@@ -20,4 +20,5 @@ c     include 'mpif.h'
       END DO
  
       call MPI_FINALIZE(ierror)
+
       END PROGRAM

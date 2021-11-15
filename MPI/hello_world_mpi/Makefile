@@ -4,7 +4,7 @@
 all: gnu run_gnu
 
 gnu: 
-	mpif90 hello_world_mpi.f -o hello_world_mpi
+	${PETSC_DIR}/arch-linux-c-debug/bin/mpif90 hello_world_mpi.f -o hello_world_mpi
 
 run_gnu:
-	mpirun -np 4 hello_world_mpi
+	${PETSC_DIR}/arch-linux-c-debug/bin/mpirun -np 4 ./hello_world_mpi

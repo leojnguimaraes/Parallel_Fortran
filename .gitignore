@@ -29,3 +29,5 @@ PETSc/ex2_tutorial_ksp_parallel/ex2f
 PETSc/ex5f_tutorial_snes/ex5f
 PETSc/hello_world/hello_world
 PETSc/hello_world_sincrono/hello_world
+PETSC/vector_test/vector_test
+PETSC/matrix_test/matrix_test

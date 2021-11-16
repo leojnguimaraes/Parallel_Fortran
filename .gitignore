@@ -21,3 +21,10 @@ CAF/pi_integral_coarray/pi_integral_coarray
 OpenAcc/soma_acc/soma_acc.o
 OpenAcc/soma_acc/soma_acc.out
 PETSc/ex5f_tutorial/ex5f
+MPI/broadcast_reduction/bcast_reduction
+MPI/send_receive/send_receive
+MPI/sumvector/sumvector
+PETSc/ex1_tutorial_ksp_sequencial/ex1f
+PETSc/ex2_tutorial_ksp_parallel/ex2f
+PETSc/ex5f_tutorial_snes/ex5f
+

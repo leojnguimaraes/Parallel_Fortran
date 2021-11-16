@@ -36,8 +36,9 @@ https://youtu.be/HSThYF0LeGU
 https://youtu.be/kP7DAOrqECo
 https://youtu.be/ZQq865cWDic
 
-Papers:
+MEF:
 =======
 
 A PETSc-Based Parallel Implementation of Finite Element Method for Elasticity Problems:
 https://www.hindawi.com/journals/mpe/2015/147286/
+https://scicomp.stackexchange.com/questions/7720/what-is-the-basic-requirement-to-understand-the-petsc-library

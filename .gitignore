@@ -27,4 +27,5 @@ MPI/sumvector/sumvector
 PETSc/ex1_tutorial_ksp_sequencial/ex1f
 PETSc/ex2_tutorial_ksp_parallel/ex2f
 PETSc/ex5f_tutorial_snes/ex5f
-
+PETSc/hello_world/hello_world
+PETSc/hello_world_sincrono/hello_world

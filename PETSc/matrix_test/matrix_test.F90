@@ -43,6 +43,9 @@
         call MPI_Barrier(PETSC_COMM_WORLD,ierr);CHKERRA(ierr)
       enddo
 
+!     zera matriz:
+      call MatZeroEntries(A,ierr);CHKERRA(ierr)
+
 !     cria matriz identidade:
       do i=Istart,Iend-1
         value=1.0

@@ -14,6 +14,7 @@ Cursos e palestras:
 Matthew Knepley:
 https://youtu.be/u7IjOrrS_ro
 https://youtu.be/pc2KZp409Ug
+https://youtu.be/P5Iwwhbnwxk
 
 Václav Hapla:
 https://youtu.be/asVaFg1NDqY

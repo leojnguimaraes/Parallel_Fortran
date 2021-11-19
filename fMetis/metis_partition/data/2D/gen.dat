@@ -1,0 +1,10 @@
+numnp: number of nodal points
+1711
+numel: number of elements
+3180
+ndim: problem dimension
+2
+nummat: number of materials
+4
+numpar: number of partitions
+30

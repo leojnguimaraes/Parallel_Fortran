@@ -20,80 +20,88 @@
 
       call read_mesh
 
-      total_check=0
-      allocate(eptr(numel+1),source=0,stat=check)
-      total_check=total_check+check
-      allocate(nodes(numel*mnnel),source=0,stat=check)
-      total_check=total_check+check
-      if (total_check/=0) then
-       write(file_gen_out,*)
-       write(file_gen_out,*)'program metis_partition'
-       write(file_gen_out,*)'Problems with dynamic memory allocation.'
-       write(file_gen_out,*)'Stop.'
-       stop
-      endif
+      if (numpar>1) then
 
-      i=0
-      k=1
-      eptr(1)=0
-      do iel=1,numel
-         nnel=mesh%lnodes(iel)
-         do j=1,nnel
-           i=i+1
-           nodes(i)=mesh%kxx(j,iel)-1
-         enddo
-         k=k+1
-         eptr(k)=eptr(k-1)+nnel
-      enddo
+        total_check=0
+        allocate(eptr(numel+1),source=0,stat=check)
+        total_check=total_check+check
+        allocate(nodes(numel*mnnel),source=0,stat=check)
+        total_check=total_check+check
+        if (total_check/=0) then
+         write(file_gen_out,*)
+         write(file_gen_out,*)'program metis_partition'
+         write(file_gen_out,*)'Problems with dynamic memory allocation.'
+         write(file_gen_out,*)'Stop.'
+         stop
+        endif
 
-      call METIS_PartMeshNodal(numel,numnp,eptr,nodes,vwgt,             &
-     &                         vsize,numpar,tpwgts,mopts,n,             &
-     &                         mesh%partition_element,                  &
-     &                         mesh%partition_node        ) 
-
-      total_check=0
-      allocate(newnode(numnp),source=0,stat=check)
-      total_check=total_check+check
-      if (total_check/=0) then
-       write(file_gen_out,*)
-       write(file_gen_out,*)'program metis_partition'
-       write(file_gen_out,*)'Problems with dynamic memory allocation.'
-       write(file_gen_out,*)'Stop.'
-       stop
-      endif
-
-      k=0
-      do i=0,numpar-1
-        do j=1,numnp
-          if (mesh%partition_node(j)==i) then
-            k=k+1
-            mesh_new%partition_node(k)=i
-            mesh_new%ifluxtype(k)=mesh%ifluxtype(j)
-            do idim=1,ndim
-              mesh_new%coord(idim,k)=mesh%coord(idim,j)
-              mesh_new%ifordisp(idim,k)=mesh%ifordisp(idim,j)
-            enddo
-            newnode(j)=k
-          endif
-        enddo
-      enddo
-
-      k=0
-      do i=0,numpar-1
+        i=0
+        k=1
+        eptr(1)=0
         do iel=1,numel
-          if (mesh%partition_element(iel)==i) then
-            k=k+1
-            mesh_new%partition_element(k)=i
-            mesh_new%lnodes(k)=mesh%lnodes(iel)
-            mesh_new%lnval(k)=mesh%lnval(iel)
-            mesh_new%ltype(k)=mesh%ltype(iel)
-            mesh_new%mtype(k)=mesh%mtype(iel)
-            do j=1,mesh%lnodes(iel)
-              mesh_new%kxx(j,k)=newnode(mesh%kxx(j,iel))
-            enddo
-          endif
+           nnel=mesh%lnodes(iel)
+           do j=1,nnel
+             i=i+1
+             nodes(i)=mesh%kxx(j,iel)-1
+           enddo
+           k=k+1
+           eptr(k)=eptr(k-1)+nnel
         enddo
-      enddo
+
+        call METIS_PartMeshNodal(numel,numnp,eptr,nodes,vwgt,           &
+     &                           vsize,numpar,tpwgts,mopts,n,           &
+     &                           mesh%partition_element,                &
+     &                           mesh%partition_node        ) 
+
+        total_check=0
+        allocate(newnode(numnp),source=0,stat=check)
+        total_check=total_check+check
+        if (total_check/=0) then
+         write(file_gen_out,*)
+         write(file_gen_out,*)'program metis_partition'
+         write(file_gen_out,*)'Problems with dynamic memory allocation.'
+         write(file_gen_out,*)'Stop.'
+         stop
+        endif
+
+        k=0
+        do i=0,numpar-1
+          do j=1,numnp
+            if (mesh%partition_node(j)==i) then
+              k=k+1
+              mesh_new%partition_node(k)=i
+              mesh_new%ifluxtype(k)=mesh%ifluxtype(j)
+              do idim=1,ndim
+                mesh_new%coord(idim,k)=mesh%coord(idim,j)
+                mesh_new%ifordisp(idim,k)=mesh%ifordisp(idim,j)
+              enddo
+              newnode(j)=k
+            endif
+          enddo
+        enddo
+
+        k=0
+        do i=0,numpar-1
+          do iel=1,numel
+            if (mesh%partition_element(iel)==i) then
+              k=k+1
+              mesh_new%partition_element(k)=i
+              mesh_new%lnodes(k)=mesh%lnodes(iel)
+              mesh_new%lnval(k)=mesh%lnval(iel)
+              mesh_new%ltype(k)=mesh%ltype(iel)
+              mesh_new%mtype(k)=mesh%mtype(iel)
+              do j=1,mesh%lnodes(iel)
+                mesh_new%kxx(j,k)=newnode(mesh%kxx(j,iel))
+              enddo
+            endif
+          enddo
+        enddo
+
+      else
+
+        mesh_new=mesh
+
+      endif
 
       call write_gid_mesh
 

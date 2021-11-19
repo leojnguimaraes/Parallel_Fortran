@@ -4,16 +4,17 @@
 
       implicit none
 
-      integer i, j, k, iel, nnel, check, total_check, n
+      integer i, j, k, iel, nnel, check, total_check, idim, prev, n
 
       integer, parameter   :: nels=3180, nnds=1711, npel=3
-      integer, allocatable :: eptr(:), nodes(:), epart(:), npart(:)
+      integer, allocatable :: eptr(:), nodes(:), epart(:), npart(:),    &
+     &                        newnode(:)
       integer, pointer     :: vwgt=>null(), vsize=>null(), mopts=>null()
       real(8), pointer     :: tpwgts=>null()
 
-      call open_file(file_gri_dat,'metis_gri.dat','old',file_gen_out)
+      call open_file(file_gri_dat,'gri.dat','old',file_gen_out)
       call open_file(file_gen_dat,'gen.dat','old',file_gen_out)
-      call open_file(file_gri_dat_NEW,'gri.dat','new',file_gen_out)
+      call open_file(file_gri_dat_NEW,'metis_gri.dat','new',file_gen_out)
       call open_file(file_gen_out,'metis_gen.out','new',file_gen_out)
       call open_file(file_gid_msh,'metis_gid.msh','new',file_gen_out)
       call open_file(file_gid_res,'metis_gid.res','new',file_gen_out)
@@ -51,11 +52,106 @@
      &                         mesh%partition_element,                  &
      &                         mesh%partition_node        ) 
 
-      mesh_new=mesh
+      total_check=0
+      allocate(newnode(numnp),source=0,stat=check)
+      total_check=total_check+check
+      if (total_check/=0) then
+       write(file_gen_out,*)
+       write(file_gen_out,*)'program metis_partition'
+       write(file_gen_out,*)'Problems with dynamic memory allocation.'
+       write(file_gen_out,*)'Stop.'
+       stop
+      endif
+
+      k=0
+      do i=0,numpar-1
+        do j=1,numnp
+          if (mesh%partition_node(j)==i) then
+            k=k+1
+            mesh_new%partition_node(k)=i
+            mesh_new%ifluxtype(k)=mesh%ifluxtype(j)
+            do idim=1,ndim
+              mesh_new%coord(idim,k)=mesh%coord(idim,j)
+              mesh_new%ifordisp(idim,k)=mesh%ifordisp(idim,j)
+            enddo
+            newnode(j)=k
+          endif
+        enddo
+      enddo
+
+      k=0
+      do i=0,numpar-1
+        do iel=1,numel
+          if (mesh%partition_element(iel)==i) then
+            k=k+1
+            mesh_new%partition_element(k)=i
+            mesh_new%lnodes(k)=mesh%lnodes(iel)
+            mesh_new%lnval(k)=mesh%lnval(iel)
+            mesh_new%ltype(k)=mesh%ltype(iel)
+            mesh_new%mtype(k)=mesh%mtype(iel)
+            do j=1,mesh%lnodes(iel)
+              mesh_new%kxx(j,k)=newnode(mesh%kxx(j,iel))
+            enddo
+          endif
+        enddo
+      enddo
 
       call write_gid_mesh
 
       call write_gid_results
+
+      print *, ' '
+      print *, 'Node Partition:'
+      print *, '==============='
+      print *, ' '
+      do i=0,numpar-1
+        prev=-1
+        print *, '  Rank:',i
+        do j=1,numnp-1
+          if (mesh_new%partition_node(j)==i) then
+            if (mesh_new%partition_node(j)/=prev)                       &
+     &      print *, '    Lower: ',j
+            if (mesh_new%partition_node(j)/=mesh_new%partition_node(j+1)) &
+     &      print *, '    Higher:',j
+            prev=mesh_new%partition_node(j)
+          endif
+        enddo
+      enddo
+      print *, '    Higher:',numnp
+
+      print *, ' '
+      print *, 'Element Partition:'
+      print *, '=================='
+      print *, ' '
+      do i=0,numpar-1
+        prev=-1
+        print *, '  Rank:',i
+        do j=1,numel-1
+          if (mesh_new%partition_element(j)==i) then
+            if (mesh_new%partition_element(j)/=prev)                    &
+     &      print *, '    Lower: ',j
+            if (mesh_new%partition_element(j)/=mesh_new%partition_element(j+1)) &
+     &      print *, '    Higher:',j
+            prev=mesh_new%partition_element(j)
+          endif
+        enddo
+      enddo
+      print *, '    Higher:',numel
+
+      do i=1,numnp
+       write(file_gri_dat_NEW,*) i,                                     &
+     &                           mesh_new%partition_node(i),            &
+     &                          (mesh_new%coord(idim,i),idim=1,ndim),   &
+     &                          (mesh_new%ifordisp(idim,i),idim=1,ndim),&
+     &                           mesh_new%ifluxtype(i)
+      enddo
+      do i=1,numel
+       write(file_gri_dat_NEW,*) i,                                     &
+     &                           mesh_new%partition_element(i),         &
+     &                           mesh_new%mtype(i),                     & 
+     &                           mesh_new%ltype(i),                     &
+     &                          (mesh_new%kxx(k,i),k=1,mnnel)
+      enddo
 
       close(file_gri_dat)
       close(file_gri_dat_NEW)

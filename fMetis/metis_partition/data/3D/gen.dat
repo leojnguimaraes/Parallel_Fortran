@@ -7,4 +7,4 @@ ndim: problem dimension
 nummat: number of materials
 1
 numpar: number of partitions
-3
+8

@@ -6,7 +6,6 @@
 
       integer i, j, k, iel, nnel, check, total_check, idim, prev, n
 
-      integer, parameter   :: nels=3180, nnds=1711, npel=3
       integer, allocatable :: eptr(:), nodes(:), epart(:), npart(:),    &
      &                        newnode(:)
       integer, pointer     :: vwgt=>null(), vsize=>null(), mopts=>null()

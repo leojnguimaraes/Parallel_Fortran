@@ -34,6 +34,7 @@
       write(file_gen_out,*) 'Number of materials:          ', nummat
       write(file_gen_out,*) 'Degrees of freedom per node:  ', ndf
       write(file_gen_out,*) 'Nodes per element (maximum):  ', mnnel
+      write(file_gen_out,*) 'Number of mesh partitions:    ', numpar
 
       if (ndim<2 .or. ndim>3) then
         write(file_gen_out,*)

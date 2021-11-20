@@ -1,4 +1,5 @@
 Material interessante para consulta:
+- https://wvuhpc.github.io/Modern-Fortran/11-Best-Practices/index.html
 - https://www.openacc.org/get-started
 - https://docs.computecanada.ca/wiki/OpenACC_Tutorial
 - https://www.bu.edu/tech/support/research/software-and-programming/programming/multiprocessor/gpu-computing/openacc-fortran/

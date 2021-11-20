@@ -6,8 +6,7 @@
 
       integer i, j, k, iel, nnel, check, total_check, idim, prev, n
 
-      integer, allocatable :: eptr(:), nodes(:), epart(:), npart(:),    &
-     &                        newnode(:)
+      integer, allocatable :: eptr(:), nodes(:), newnode(:)
       integer, pointer     :: vwgt=>null(), vsize=>null(), mopts=>null()
       real(8), pointer     :: tpwgts=>null()
 

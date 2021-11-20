@@ -4,7 +4,7 @@
 all: gnu run_gnu
 
 gnu: 
-	${PETSC_DIR}/arch-linux-c-debug/bin/mpif90 sumvector.F -o sumvector
+	${PETSC_DIR}/arch-linux-c-debug/bin/mpif90 -g -fbacktrace -Wall sumvector.F -o sumvector
 
 run_gnu:
 	${PETSC_DIR}/arch-linux-c-debug/bin/mpirun -np 4 ./sumvector

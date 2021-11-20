@@ -107,54 +107,47 @@
 
       call write_gid_results
 
-      print *, ' '
-      print *, 'Node Partition:'
-      print *, '==============='
-      print *, ' '
+      write(file_gri_dat_NEW,*)'Nodal point partition:'
       do i=0,numpar-1
         prev=-1
-        print *, '  Rank:',i
+        write(file_gri_dat_NEW,*)'  Rank:',i
         do j=1,numnp-1
           if (mesh_new%partition_node(j)==i) then
             if (mesh_new%partition_node(j)/=prev)                       &
-     &      print *, '    Lower: ',j
+     &      write(file_gri_dat_NEW,*)'    Lower: ',j
             if (mesh_new%partition_node(j)/=mesh_new%partition_node(j+1)) &
-     &      print *, '    Higher:',j
+     &      write(file_gri_dat_NEW,*)'    Higher:',j
             prev=mesh_new%partition_node(j)
           endif
         enddo
       enddo
-      print *, '    Higher:',numnp
-
-      print *, ' '
-      print *, 'Element Partition:'
-      print *, '=================='
-      print *, ' '
-      do i=0,numpar-1
-        prev=-1
-        print *, '  Rank:',i
-        do j=1,numel-1
-          if (mesh_new%partition_element(j)==i) then
-            if (mesh_new%partition_element(j)/=prev)                    &
-     &      print *, '    Lower: ',j
-            if (mesh_new%partition_element(j)/=mesh_new%partition_element(j+1)) &
-     &      print *, '    Higher:',j
-            prev=mesh_new%partition_element(j)
-          endif
-        enddo
-      enddo
-      print *, '    Higher:',numel
-
+      write(file_gri_dat_NEW,*)'    Higher:',numnp
+      write(file_gri_dat_NEW,*)'Nodal point list:'
       do i=1,numnp
        write(file_gri_dat_NEW,*) i,                                     &
-     &                           mesh_new%partition_node(i),            &
      &                          (mesh_new%coord(idim,i),idim=1,ndim),   &
      &                          (mesh_new%ifordisp(idim,i),idim=1,ndim),&
      &                           mesh_new%ifluxtype(i)
       enddo
+
+      write(file_gri_dat_NEW,*)'Element partition:'
+      do i=0,numpar-1
+        prev=-1
+        write(file_gri_dat_NEW,*)'  Rank:',i
+        do j=1,numel-1
+          if (mesh_new%partition_element(j)==i) then
+            if (mesh_new%partition_element(j)/=prev)                    &
+     &      write(file_gri_dat_NEW,*)'    Lower: ',j
+            if (mesh_new%partition_element(j)/=mesh_new%partition_element(j+1)) &
+     &      write(file_gri_dat_NEW,*)'    Higher:',j
+            prev=mesh_new%partition_element(j)
+          endif
+        enddo
+      enddo
+      write(file_gri_dat_NEW,*)'    Higher:',numel
+      write(file_gri_dat_NEW,*)'Element list:'
       do i=1,numel
        write(file_gri_dat_NEW,*) i,                                     &
-     &                           mesh_new%partition_element(i),         &
      &                           mesh_new%mtype(i),                     & 
      &                           mesh_new%ltype(i),                     &
      &                          (mesh_new%kxx(k,i),k=1,mnnel)

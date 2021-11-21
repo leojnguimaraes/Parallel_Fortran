@@ -36,4 +36,4 @@ fMetis/my_test/my_test
 fMetis/test_NodeND/test_NodeND
 fMetis/test_PartMeshNodal1/test_PartMeshNodal1
 fMetis/test_PartMeshNodal2/test_PartMeshNodal2
-
+PETSc/my_allocate_test/allocate_test

@@ -10,8 +10,7 @@
       PetscErrorCode                    :: i,j,ierr
       PetscMPIInt                       :: myRank,mySize
       character(len=PETSC_MAX_PATH_LEN) :: outputString
-      
-      integer, allocatable :: count_vector(:)
+      PetscMPIInt, allocatable          :: count_vector(:)
       
       call PetscInitialize(PETSC_NULL_CHARACTER,ierr)
       if (ierr /= 0) then

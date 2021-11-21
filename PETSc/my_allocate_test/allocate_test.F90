@@ -43,6 +43,8 @@
         CHKERRA(ierr)
       enddo
       
+      deallocate(count_vector)
+
       call PetscFinalize(ierr)
       CHKERRA(ierr)
       

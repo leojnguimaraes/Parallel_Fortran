@@ -43,3 +43,7 @@ MEF:
 A PETSc-Based Parallel Implementation of Finite Element Method for Elasticity Problems:
 https://www.hindawi.com/journals/mpe/2015/147286/
 https://scicomp.stackexchange.com/questions/7720/what-is-the-basic-requirement-to-understand-the-petsc-library
+
+Talk: Massively Parallel Finite Element Simulations with deal.II
+Presented by Timo Heister, Texas A&M University, USA at the SIAM PP12 conference:
+https://youtu.be/9ClweIYfxgY

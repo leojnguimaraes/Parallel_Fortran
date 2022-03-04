@@ -1,3 +1,6 @@
+intel_oneAPI:
+	ifort pi_mc.f -o pi_mc -liomp5 -lpthread -lm -qopenmp 
+
 intel:
 	/opt/intel/bin/ifort pi_mc.f -o pi_mc -Wl,-rpath,/opt/intel/lib/intel64 -L/opt/intel/lib/intel64 -liomp5 -lpthread -lm -qopenmp 
 

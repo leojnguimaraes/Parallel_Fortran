@@ -10,7 +10,7 @@
 #
 ################################################################################
 
-FC       = nvfortran
+FC       = /opt/nvidia/hpc_sdk/Linux_x86_64/23.7/compilers/bin/nvfortran
 OBJ=o
 EXE=out
 RUN=

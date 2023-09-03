@@ -1,4 +1,4 @@
-FC       = nvfortran
+FC       = /opt/nvidia/hpc_sdk/Linux_x86_64/23.7/compilers/bin/nvfortran
 OBJ=o
 EXE=out
 RUN=
@@ -8,7 +8,7 @@ ifeq ($(findstring CYGWIN_NT, $(UNAME)), CYGWIN_NT)
    EXE=exe
 endif
 
-FCFLAGS  = -fast
+FC       = /opt/nvidia/hpc_sdk/Linux_x86_64/23.7/compilers/bin/nvfortran
 ACCFLAGS = -Minfo -acc $(OPT)
 
 all: build run verify

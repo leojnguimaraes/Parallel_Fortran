@@ -13,7 +13,7 @@ ACCFLAGS = -Minfo -acc $(OPT)
 
 all: build run verify
 
-build: soma_acc.f
+build: soma_acc.f90
 	$(FC) $(FCFLAGS) $(ACCFLAGS) -o soma_acc.$(EXE) $<
 
 run: soma_acc.$(EXE)

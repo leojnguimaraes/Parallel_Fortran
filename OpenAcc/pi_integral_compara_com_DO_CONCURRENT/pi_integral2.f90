@@ -46,16 +46,13 @@
       call system_clock( count=c1 )
 
       !$omp parallel do collapse(2) default(shared) 
-      !$acc data copy(dc_step(:,:))
-      !$acc parallel loop collapse(2) default(present)
+      !$acc kernels loop present(dc_step)
       DO i=1,nstep
         DO j=1,nstep
           x=dfloat(i-1)*step + 0.5d0*step
           dc_step(i,j) = 4.0d0/(1.0d0+x*x)
         ENDDO
       ENDDO
-      !$acc end parallel loop
-      !$acc end data
       !$omp end parallel do
 
       call system_clock( count=c2 )

@@ -1,6 +1,6 @@
       PROGRAM PI_Integral
 
-!      USE OMP_LIB  ! compilador intel
+!     USE OMP_LIB  ! compilador intel
       USE OPENACC  ! compilador nvidia
 
       IMPLICIT NONE
@@ -13,7 +13,7 @@
 
       pi = 4.0d0*datan(1.0d0)
 
-      nstep = 10000
+      nstep = 20000
       step = 1.0d0/dfloat(nstep)
 
       ALLOCATE(dc_step(nstep,nstep),source=0.0d0,stat=check)
@@ -46,6 +46,7 @@
       call system_clock( count=c1 )
 
       !$omp parallel do collapse(2) default(shared) 
+      !$acc data copy(dc_step(:,:))
       !$acc parallel loop collapse(2) default(present)
       DO i=1,nstep
         DO j=1,nstep
@@ -54,6 +55,7 @@
         ENDDO
       ENDDO
       !$acc end parallel loop
+      !$acc end data
       !$omp end parallel do
 
       call system_clock( count=c2 )

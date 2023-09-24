@@ -42,5 +42,5 @@ clean:
 	@rm -rf *.$(EXE) *.$(OBJ) *.mod *.dwf *.pdb prof
 
 intel_oneAPI:
-	ifort pi_integral2.f90 -O3 -o pi_integral2_intel.$(EXE) -liomp5 -lpthread -lm -qopenmp 
+	ifx pi_integral2.f90 -O3 -o pi_integral2_intel.$(EXE) -liomp5 -lpthread -lm -qopenmp 
 

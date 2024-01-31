@@ -6,8 +6,11 @@
 
       ! Interact with the user on Image 1; execution for all others pass by.
       if (this_image() == 1) then   
-        write(*,'(a)',advance='no') 'Enter your name: '
+        write(*,*)
+      ! write(*,'(a)',advance='no') 'Enter your name: '
+        write(*,'(a)') 'Enter your name: '
         read(*,'(a)') name
+        write(*,*)
       end if
       ! Distribute information to all images
       call co_broadcast(name,source_image=1)
